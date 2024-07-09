@@ -1,47 +1,123 @@
-import Button from './Button';
+import { useState } from 'react';
 
-import ModeToggler from './ModeToggler';
+export default function InputComponent() { 
+  const [inputText, setText] = useState('hello'); 
+  function handleChange(e) { 
+    setText(e.target.value); 
+  } 
 
-// import './App.css';
+ // REGISTER FORM
+  const [form, setForm] = useState({ 
+   firstName: 'Name', 
+   lastName: 'Last', 
+   email: 'email@email.com', 
+ }); 
 
-function App() {
-   // DYNAMIC EVENTS
-   function handleClick() {
-      let randomNum = Math.floor(Math.random() * 3) + 1;
-      console.log(randomNum);
-      let userInput = prompt('type a number');
-      alert(`Computer number: ${randomNum}, Your guess: ${userInput}`);
-   }
+  return ( 
+    <> 
+      <input value={inputText} onChange={handleChange} /> 
+      <p>You typed: {inputText}</p> 
+      <button onClick={() => setText('hello')}> 
+        Reset 
+      </button> 
+      
+      {/* REGISTER FORM */}
+      <div> 
+         <h1>REGISTER FORM</h1>
+       <label> 
+         First name: 
+         <input 
+           value={form.firstName} 
+           onChange={e => { 
+             setForm({ 
+               ...form, firstName: e.target.value 
+             }); 
+           }} 
+         /> 
+       </label> 
+       <label> 
+         Last name: 
+         <input 
+           value={form.lastName} 
+           onChange={e => { 
+             setForm({ 
+               ...form, lastName: e.target.value 
+             }); 
+           }} 
+         /> 
+       </label> 
+       <label> 
+         Email: 
+         <input 
+           value={form.email} 
+           onChange={e => { 
+             setForm({ 
+               ...form, email: e.target.value 
+             }); 
+           }} 
+         /> 
+       </label> 
+       <p> 
+         {form.firstName}{' '} 
+         {form.lastName}{' '} 
+         ({form.email})
+       </p> 
+     </div> 
 
-  return (
-   <>
-    <Button />
-    <ModeToggler />
-      <br></br>
-      <div>
-         <h1>DYNAMIC EVENTS</h1>
-         <h2>Task: Add a button and handle a click event</h2>
-         <button onClick={handleClick}>Guess the number between 1 and 3</button>
-      </div>
-      <br></br>
-    </>
-  );
-}
+    </> 
+  ); 
+} 
 
-// DYNAMIC EVENTS
-// function App() {
-//     function handleClick() {
-//       let randomNum = Math.floor(Math.random() * 3) + 1;
-//       console.log(randomNum);
-//       let userInput = prompt('type a number');
-//       alert(`Computer number: ${randomNum}, Your guess: ${userInput}`);
-//     }
-//     return (
-//       <div>
-//         <h1>Task: Add a button and handle a click event</h1>
-//         <button onClick={handleClick}>Guess the number between 1 and 3</button>
-//       </div>
-//     );
-//   }
-  
-export default App;
+// export default function RegisterForm() { 
+//    const [form, setForm] = useState({ 
+//      firstName: 'Luke', 
+//      lastName: 'Jones', 
+//      email: 'lukeJones@sculpture.com', 
+//    }); 
+ 
+//    return ( 
+//      <> 
+//        <label> 
+//          First name: 
+//          <input 
+//            value={form.firstName} 
+//            onChange={e => { 
+//              setForm({ 
+//                ...form, 
+//                firstName: e.target.value 
+//              }); 
+//            }} 
+//          /> 
+//        </label> 
+//        <label> 
+//          Last name: 
+//          <input 
+//            value={form.lastName} 
+//            onChange={e => { 
+//              setForm({ 
+//                ...form, 
+//                lastName: e.target.value 
+//              }); 
+//            }} 
+//          /> 
+//        </label> 
+//        <label> 
+//          Email: 
+//          <input 
+//            value={form.email} 
+//            onChange={e => { 
+//              setForm({ 
+//                ...form, 
+//                email: e.target.value 
+//              }); 
+//            }} 
+//          /> 
+//        </label> 
+//        <p> 
+//          {form.firstName}{' '} 
+//          {form.lastName}{' '} 
+//          ({form.email})
+//        </p> 
+//      </> 
+//    ); 
+//  } 
